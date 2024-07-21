@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS Product;
 
 -- Create the Book table
 CREATE TABLE `Book` (
-                        `Id` INT AUTO_INCREMENT PRIMARY KEY,
+                        `Id` IntegerAUTO_INCREMENT PRIMARY KEY,
                         `Name` VARCHAR(255) NOT NULL,
                         `Author` VARCHAR(255) NOT NULL
 );
@@ -34,7 +34,7 @@ INSERT INTO Book (Name, Author) VALUES
 
 -- Create the Category table
 CREATE TABLE `Category` (
-                            `Id` INT AUTO_INCREMENT PRIMARY KEY,
+                            `Id` IntegerAUTO_INCREMENT PRIMARY KEY,
                             `Name` VARCHAR(255) NOT NULL
 );
 
@@ -47,13 +47,13 @@ INSERT INTO Category (Name) VALUES
 
 -- Create the Product table
 CREATE TABLE `Product` (
-                           `Id` INT AUTO_INCREMENT PRIMARY KEY,
+                           `Id` IntegerAUTO_INCREMENT PRIMARY KEY,
                            `Name` VARCHAR(255) NOT NULL,
                            `Description` TEXT,
                            `Price` DECIMAL(10, 2) NOT NULL,
                            `PictureUrl` VARCHAR(255),
-                           `ProductCategoryId` INT NOT NULL,
-                           `ProductBookId` INT NOT NULL,
+                           `ProductCategoryId` IntegerNOT NULL,
+                           `ProductBookId` IntegerNOT NULL,
                            FOREIGN KEY (`ProductCategoryId`) REFERENCES `Category`(`Id`),
                            FOREIGN KEY (`ProductBookId`) REFERENCES `Book`(`Id`)
 );
