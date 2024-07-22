@@ -9,6 +9,7 @@ import com.e_com.Ayoub.sCenter.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +51,10 @@ public class ProductController {
             @RequestParam(name = "order" , defaultValue = "asc") String order
 
             ){
+
+        //convert order  to sort direction
+        Sort.Direction direction  = order.equalsIgnoreCase("desc") ? Sort.Direction.DESC:Sort.Direction.ASC ;
+        Sort sorting = Sort.by(direction , sort) ;
         Pageable pageable  = PageRequest.of(page , size);
 
         Page<ProductResponse> productResponses = productService.getProducts(pageable , bookId , categoryId , keyword);
